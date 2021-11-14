@@ -4,17 +4,18 @@ let app = express();
 app.use('/', express.static('public'));
 
 /*Step 1.3. Get access to the file system*/
-let fs = require('fs');
+//let fs = require('fs');
 
 /*Step 1.4. Start a secure https server*/
 let https = require('https');
 //serve certificates
-let serverOptions = {
+/*let serverOptions = {
   key: fs.readFileSync('local.key'),
   cert: fs.readFileSync('local.cert')
-};
+};*/
 //create a server on the app object
-let httpsServer = https.createServer(serverOptions, app);
+//let httpsServer = https.createServer(serverOptions, app);
+let httpsServer = https.createServer(app);
 //create a port variable and listen
 let port = process.env.port || 443;
 httpsServer.listen(port, ()=>{
