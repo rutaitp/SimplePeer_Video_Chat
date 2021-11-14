@@ -7,18 +7,17 @@ app.use('/', express.static('public'));
 //let fs = require('fs');
 
 /*Step 1.4. Start a secure https server*/
-let http = require('http');
+let https = require('https');
 //serve certificates
-/*let serverOptions = {
+let serverOptions = {
   key: fs.readFileSync('local.key'),
   cert: fs.readFileSync('local.cert')
-};*/
+};
 //create a server on the app object
-//let httpsServer = https.createServer(serverOptions, app);
-let httpServer = http.createServer(app);
+let httpsServer = https.createServer(serverOptions, app);
 //create a port variable and listen
 let port = process.env.port || 443;
-httpServer.listen(port, ()=>{
+httpsServer.listen(port, ()=>{
   console.log('Server listening on port ', port);
 });
 
