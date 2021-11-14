@@ -7,7 +7,7 @@ app.use('/', express.static('public'));
 //let fs = require('fs');
 
 /*Step 1.4. Start a secure https server*/
-let https = require('https');
+let https = require('http');
 //serve certificates
 /*let serverOptions = {
   key: fs.readFileSync('local.key'),
@@ -15,10 +15,10 @@ let https = require('https');
 };*/
 //create a server on the app object
 //let httpsServer = https.createServer(serverOptions, app);
-let httpsServer = https.createServer(app);
+let httpServer = http.createServer(app);
 //create a port variable and listen
 let port = process.env.port || 443;
-httpsServer.listen(port, ()=>{
+httpServer.listen(port, ()=>{
   console.log('Server listening on port ', port);
 });
 
@@ -27,7 +27,7 @@ let peers = {};
 
 /*STEP 3. Create a web socket server to send signaling messages*/
 let io = require('socket.io');
-io = new io.Server(httpsServer);
+io = new io.Server(httpServer);
 
 io.sockets.on('connection', (socket) => {
   console.log('We have a new client: ', socket.id);
