@@ -7,7 +7,7 @@ app.use('/', express.static('public'));
 //let fs = require('fs');
 
 /*Step 1.4. Start a secure https server*/
-let https = require('http');
+let http = require('http');
 //serve certificates
 /*let serverOptions = {
   key: fs.readFileSync('local.key'),
